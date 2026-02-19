@@ -3,17 +3,12 @@ import AddItem from "./AddItem";
 import GroceryList from "./GroceryList";
 
 export default function GroceryApp() {
-  const [items, setItems] = useState([]);
 
-  // Load from localStorage
-  useEffect(() => {
-    const data = localStorage.getItem("groceryList");
-    if (data) {
-      setItems(JSON.parse(data));
-    }
-  }, []);
+  const [items, setItems] = useState(() => {
+    const saved = localStorage.getItem("groceryList");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  // Save to localStorage
   useEffect(() => {
     localStorage.setItem("groceryList", JSON.stringify(items));
   }, [items]);
