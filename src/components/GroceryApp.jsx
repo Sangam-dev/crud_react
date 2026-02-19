@@ -6,7 +6,14 @@ export default function GroceryApp() {
 
   const [items, setItems] = useState(() => {
     const saved = localStorage.getItem("groceryList");
-    return saved ? JSON.parse(saved) : [];
+    if (!saved) return [];
+    try {
+      return JSON.parse(saved);
+    } catch (error) {
+      console.error("Failed to parse groceryList from localStorage:", error);
+      localStorage.removeItem("groceryList");
+      return [];
+    }
   });
 
   useEffect(() => {
