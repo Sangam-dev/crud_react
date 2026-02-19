@@ -24,7 +24,7 @@ export default function GroceryApp() {
     <div className="container">
       <div className="Groccery-app">
         <h2>
-          Groccery list <img src="/images/icon.png" alt="icon" />
+          Groccery list <img src="./images/icon.png" alt="icon" />
         </h2>
 
         <AddItem setItems={setItems} />
